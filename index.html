@@ -1,1 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paved Road AI | Your AI Center of Excellence, built and enabled</title>
+<meta name="description" content="Paved Road AI builds your AI Center of Excellence, then enables every division to use it safely and at speed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Change this one link when your Calendly page is ready: search for CALENDLY in the script below. */
+  :root {
+    --asphalt: #1C2127;
+    --concrete: #F3F4F1;
+    --curb: #D9DCD6;
+    --lane: #E8B321;
+    --slate: #56616B;
+    --sign: #1F5A45;
+    --measure: 68ch;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--concrete);
+    color: var(--asphalt);
+    font-family: "Overpass", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--sign); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--lane); outline-offset: 3px; }
+  img, svg { max-width: 100%; }
 
+  .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+  /* Header */
+  .top { display: flex; align-items: center; justify-content: space-between; padding-block: 1.5rem; }
+  .mark { display: flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--asphalt); letter-spacing: -.01em; }
+  .mark svg { width: 28px; height: 28px; }
+
+  .btn {
+    display: inline-block;
+    background: var(--asphalt);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    padding: .85rem 1.4rem .75rem;
+    border-radius: 4px;
+    transition: background .15s ease;
+  }
+  .btn:hover { background: var(--sign); }
+  .btn.small { padding: .6rem 1rem .5rem; font-size: 1rem; }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3rem; align-items: center; padding-block: 3.5rem 5rem; }
+  h1 {
+    font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    font-weight: 800;
+    margin: 0 0 1.5rem;
+  }
+  .lede { font-size: 1.3rem; color: var(--slate); max-width: 34ch; margin: 0 0 2rem; }
+  .hero-note { margin-top: 1rem; font-size: .95rem; color: var(--slate); }
+
+  .road-map { width: 100%; height: auto; display: block; }
+  .road-map .bed { fill: none; stroke: var(--asphalt); stroke-width: 30; stroke-linecap: butt; }
+  .road-map .line { fill: none; stroke: var(--lane); stroke-width: 3; stroke-dasharray: 14 12; }
+  .road-map text { font-family: "Overpass", sans-serif; fill: var(--asphalt); font-size: 17px; font-weight: 700; }
+  .road-map .hub { font-size: 15px; font-weight: 700; fill: var(--slate); }
+  @media (prefers-reduced-motion: no-preference) {
+    .road-map .line { animation: flow 2.8s cubic-bezier(.2,.7,.3,1) 1 both; }
+    @keyframes flow { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
+  }
+
+  /* Sections */
+  section { padding-block: 5rem; }
+  section + section { border-top: 1px solid var(--curb); }
+  h2 { font-size: clamp(1.8rem, 3.2vw, 2.5rem); line-height: 1.1; letter-spacing: -.02em; font-weight: 800; margin: 0 0 1.25rem; max-width: 22ch; }
+  h3 { font-size: 1.25rem; line-height: 1.25; margin: 0 0 .5rem; font-weight: 700; }
+  p { margin: 0 0 1rem; max-width: var(--measure); }
+
+  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 2.5rem; }
+  .problem-grid p { color: var(--slate); }
+
+  /* The route: a real sequence, so it is numbered */
+  .route { list-style: none; margin: 3rem 0 0; padding: 0; position: relative; }
+  .route::before {
+    content: "";
+    position: absolute; left: 22px; top: 8px; bottom: 8px; width: 44px;
+    background: var(--asphalt);
+    border-radius: 2px;
+  }
+  .route::after {
+    content: "";
+    position: absolute; left: 43px; top: 20px; bottom: 20px; width: 3px;
+    background: repeating-linear-gradient(to bottom, var(--lane) 0 14px, transparent 14px 26px);
+  }
+  .route li { position: relative; padding: 0 0 3rem 7rem; }
+  .route li:last-child { padding-bottom: 0; }
+  .route .stop {
+    position: absolute; left: 0; top: -.2rem;
+    width: 88px; height: 44px;
+    display: grid; place-items: center;
+    background: var(--lane); color: var(--asphalt);
+    font-weight: 800; font-size: 1rem; border-radius: 3px;
+    z-index: 1;
+  }
+  .route .days { color: var(--slate); font-weight: 500; font-size: 1rem; margin-bottom: .35rem; }
+
+  .services { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; margin-top: 2.5rem; }
+  .services div { padding: 1.75rem 0; border-top: 3px solid var(--asphalt); }
+  .services p { color: var(--slate); }
+
+  .assurance { background: var(--asphalt); color: #fff; border-top: none !important; }
+  .assurance h2 { color: #fff; }
+  .assurance p { color: #C9CED3; }
+  .assurance .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .assurance ul { margin: 0; padding: 0; list-style: none; }
+  .assurance li { padding: 1rem 0 1rem 1.5rem; border-bottom: 1px solid #36404A; position: relative; }
+  .assurance li::before { content: ""; position: absolute; left: 0; top: 1.45rem; width: 10px; height: 3px; background: var(--lane); }
+  .assurance + section { border-top: none; }
+
+  .about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; }
+  .about .kicker { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin: 0; }
+
+  .closing { text-align: left; }
+  .closing .actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-top: 2rem; }
+
+  .news-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .newsletter iframe { width: 100%; height: 320px; border: 1px solid var(--curb); border-radius: 4px; background: #fff; }
+  .foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+  footer { padding-block: 2.5rem; border-top: 1px solid var(--curb); color: var(--slate); font-size: .95rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+
+  @media (max-width: 860px) {
+    .hero, .assurance .cols, .about, .news-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero { padding-block: 2rem 3.5rem; }
+    .problem-grid, .services { grid-template-columns: 1fr; gap: 0; }
+    .problem-grid { gap: 1.5rem; }
+    section { padding-block: 3.5rem; }
+    .route li { padding-left: 6.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="mark" href="#">
+    <svg viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="4" fill="#1C2127"/><rect x="12.5" y="3" width="3" height="6" fill="#E8B321"/><rect x="12.5" y="11" width="3" height="6" fill="#E8B321"/><rect x="12.5" y="19" width="3" height="6" fill="#E8B321"/></svg>
+    Paved Road AI
+  </a>
+  <a class="btn small js-book" href="#">Book an intro call</a>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>Build your AI Center of Excellence. Then take it to every team.</h1>
+      <p class="lede">We set your AI strategy, stand up the center that owns it, and enable every division to use it safely and at speed.</p>
+      <a class="btn js-book" href="#">Book an intro call</a>
+      <p class="hero-note">A 30 minute conversation about where AI stands in your organization today.</p>
+    </div>
+    <svg class="road-map" viewBox="0 0 520 440" role="img" aria-label="One road labeled Center of Excellence branching into five roads leading to Finance, Operations, Engineering, Customer, and People.">
+      <g class="beds">
+        <path class="bed" d="M0 220 H150 C250 220 240 50 340 50 H400"/>
+        <path class="bed" d="M0 220 H150 C250 220 240 135 340 135 H400"/>
+        <path class="bed" d="M0 220 H400"/>
+        <path class="bed" d="M0 220 H150 C250 220 240 305 340 305 H400"/>
+        <path class="bed" d="M0 220 H150 C250 220 240 390 340 390 H400"/>
+      </g>
+      <g>
+        <path class="line" d="M0 220 H150 C250 220 240 50 340 50 H400"/>
+        <path class="line" d="M0 220 H150 C250 220 240 135 340 135 H400"/>
+        <path class="line" d="M0 220 H400"/>
+        <path class="line" d="M0 220 H150 C250 220 240 305 340 305 H400"/>
+        <path class="line" d="M0 220 H150 C250 220 240 390 340 390 H400"/>
+      </g>
+      <text class="hub" x="4" y="190">Center of Excellence</text>
+      <text x="412" y="56">Finance</text>
+      <text x="412" y="141">Operations</text>
+      <text x="412" y="226">Engineering</text>
+      <text x="412" y="311">Customer</text>
+      <text x="412" y="396">People</text>
+    </svg>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>AI is everywhere in your company. It is not yet working together.</h2>
+      <div class="problem-grid">
+        <div>
+          <h3>Pilots without a plan</h3>
+          <p>Every department is experimenting on its own, with its own tools and its own vendors. Few of those pilots ever reach production.</p>
+        </div>
+        <div>
+          <h3>The same work, rebuilt</h3>
+          <p>Teams solve identical problems separately. Prompts, integrations, and lessons learned stay trapped inside one group.</p>
+        </div>
+        <div>
+          <h3>Risk nobody owns</h3>
+          <p>Data handling, model choice, and review standards vary team by team. Leadership cannot see what is running or whether it is safe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach">
+    <div class="wrap">
+      <h2>One road, built once, that every team can travel.</h2>
+      <p>A Center of Excellence is the central team that brings AI into the company, proves what works, and feeds it forward to every division. We build that center with you, then hand it over running.</p>
+      <ol class="route">
+        <li>
+          <span class="stop">Assess</span>
+          <div class="days">First 30 days</div>
+          <h3>Find where AI creates real value</h3>
+          <p>We map current AI use across divisions, rank opportunities by value and risk, and agree a 12 month roadmap with leadership.</p>
+        </li>
+        <li>
+          <span class="stop">Build</span>
+          <div class="days">Days 31 to 90</div>
+          <h3>Stand up the Center of Excellence</h3>
+          <p>Charter, operating model, intake for division requests, shared platform, and the governance that lets teams move quickly without guessing.</p>
+        </li>
+        <li>
+          <span class="stop">Scale</span>
+          <div class="days">Day 91 onward</div>
+          <h3>Enable every division</h3>
+          <p>Role based training for developers, architects, and leaders, reusable building blocks, and a steady cadence of new use cases moving into production.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>What we do</h2>
+      <div class="services">
+        <div>
+          <h3>AI strategy and roadmap</h3>
+          <p>A clear point of view on where AI fits your business, which use cases come first, and how you will measure return.</p>
+        </div>
+        <div>
+          <h3>Center of Excellence setup</h3>
+          <p>The team, the charter, the platform, and the operating rhythm that turn scattered pilots into a managed portfolio.</p>
+        </div>
+        <div>
+          <h3>Division enablement</h3>
+          <p>Cohort training and certification tracks so every function can build and use AI with confidence, not just the engineering team.</p>
+        </div>
+        <div>
+          <h3>AI assurance</h3>
+          <p>Controls that prove your AI is doing what it should, built into how software ships rather than bolted on at the end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="assurance">
+    <div class="wrap cols">
+      <div>
+        <h2>Built for organizations that answer to regulators.</h2>
+        <p>Healthcare, financial services, manufacturing, and infrastructure cannot afford AI that works in a demo and fails an audit. Governance is part of the road, not a gate at the end of it.</p>
+      </div>
+      <ul>
+        <li>Policies written as code, so rules are enforced automatically and consistently</li>
+        <li>Provenance and telemetry for every model driven decision</li>
+        <li>Verification gates in your release pipeline before anything reaches users</li>
+        <li>An open maturity model so you can measure progress over time</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <p class="kicker">Led by Sonia Mehta, an engineering leader of 25 years who still builds.</p>
+      <div>
+        <p>Sonia has spent her career leading engineering organizations and shipping software in environments where reliability and compliance are not optional. She builds with today's AI tools hands on, from agent architecture to evaluation harnesses, so the advice you get comes from someone who has done the work.</p>
+        <p>She writes about platform thinking, agent architecture, and AI governance in the <a href="https://pavedroadai.substack.com">Paved Road newsletter</a> and on <a href="https://www.linkedin.com/in/sonia-mehta/">LinkedIn</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter" class="newsletter">
+    <div class="wrap news-cols">
+      <div>
+        <h2>Read the Paved Road.</h2>
+        <p>A weekly field guide to agent architecture, AI governance, and building the platform that lets every team ship AI safely. Free, and straight to your inbox.</p>
+        <p><a href="https://pavedroadai.substack.com">Browse all posts on Substack</a></p>
+      </div>
+      <iframe src="https://pavedroadai.substack.com/embed" title="Subscribe to the Paved Road newsletter" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Start with a conversation.</h2>
+      <p>Tell us where AI stands in your organization today. We will tell you honestly what we would do first.</p>
+      <div class="actions">
+        <a class="btn js-book" href="#">Book an intro call</a>
+        <a href="mailto:sonia.mehta@pavedroadai.com">sonia.mehta@pavedroadai.com</a>
+        <a href="https://www.linkedin.com/in/sonia-mehta/">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Paved Road AI, Saratoga, California</span>
+    <nav class="foot-links">
+      <a href="https://pavedroadai.substack.com">Newsletter</a>
+      <a href="https://www.linkedin.com/in/sonia-mehta/">LinkedIn</a>
+      <a href="mailto:sonia.mehta@pavedroadai.com">Email</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // CALENDLY: paste your scheduling link between the quotes.
+  var CALENDLY_URL = "https://calendly.com/mehta-sonia";
+  document.querySelectorAll(".js-book").forEach(function (a) {
+    a.href = CALENDLY_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+</script>
+</body>
+</html>
