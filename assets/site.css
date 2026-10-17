@@ -43,10 +43,9 @@ img, svg { max-width: 100%; }
   transition: background .15s ease;
 }
 .btn:hover { background: var(--sign); }
-.btn.small { padding: .6rem 1rem .5rem; font-size: 1rem; }
+.btn-lane { background: var(--lane); color: var(--asphalt); }
+.btn-lane:hover { background: #fff; }
 
-/* Hero */
-.hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3rem; align-items: center; padding-block: 3.5rem 5rem; }
 h1 {
   font-size: clamp(2.4rem, 5.2vw, 4.1rem);
   line-height: 1.02;
@@ -54,18 +53,23 @@ h1 {
   font-weight: 800;
   margin: 0 0 1.5rem;
 }
-.lede { font-size: 1.3rem; color: var(--slate); max-width: 34ch; margin: 0 0 2rem; }
-.hero-note { margin-top: 1rem; font-size: .95rem; color: var(--slate); }
 
-.road-map { width: 100%; height: auto; display: block; }
-.road-map .bed { fill: none; stroke: var(--asphalt); stroke-width: 30; stroke-linecap: butt; }
-.road-map .line { fill: none; stroke: var(--lane); stroke-width: 3; stroke-dasharray: 14 12; }
-.road-map text { font-family: "Overpass", sans-serif; fill: var(--asphalt); font-size: 17px; font-weight: 700; }
-.road-map .hub { font-size: 15px; font-weight: 700; fill: var(--slate); }
-@media (prefers-reduced-motion: no-preference) {
-  .road-map .line { animation: flow 2.8s cubic-bezier(.2,.7,.3,1) 1 both; }
-  @keyframes flow { from { stroke-dashoffset: 260; } to { stroke-dashoffset: 0; } }
+/* Hero: the photo at /images/hero.jpg sits under a dark overlay. Until it exists,
+   the asphalt color and one dashed lane stripe show instead. */
+.hero-photo {
+  color: #fff;
+  background:
+    linear-gradient(rgba(28, 33, 39, .65), rgba(28, 33, 39, .85)),
+    url("/images/hero.jpg") center / cover no-repeat,
+    repeating-linear-gradient(to right, var(--lane) 0 48px, transparent 48px 84px) left 0 bottom 2.5rem / 100% 4px no-repeat,
+    var(--asphalt);
 }
+.hero-photo .wrap { padding-block: 6rem 7rem; }
+.hero-photo h1 { max-width: 18ch; }
+.lede { font-size: 1.3rem; color: #E1E4E7; max-width: 44ch; margin: 0 0 2rem; }
+.hero-photo .actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+.hero-link { color: #fff; font-weight: 700; }
+.hero-photo a:focus-visible { outline-color: #fff; }
 
 /* Sections */
 section { padding-block: 5rem; }
@@ -143,8 +147,8 @@ footer { padding-block: 2.5rem; border-top: 1px solid var(--curb); color: var(--
 footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
 
 @media (max-width: 860px) {
-  .hero, .assurance .cols, .about, .news-cols { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero { padding-block: 2rem 3.5rem; }
+  .assurance .cols, .about, .news-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-photo .wrap { padding-block: 3.5rem 5rem; }
   .problem-grid, .services { grid-template-columns: 1fr; gap: 0; }
   .pipeline { min-width: 820px; }
   #architecture .wrap { overflow-x: auto; }
@@ -162,6 +166,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: 
 .nav a { display: inline-block; padding: .35rem 0 .2rem; color: var(--asphalt); text-decoration: none; font-weight: 500; border-bottom: 3px solid transparent; }
 .nav a:hover { border-bottom-color: var(--curb); }
 .nav a[aria-current="page"] { font-weight: 700; border-bottom-color: var(--lane); }
+
+.cards { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 2.5rem; }
+.cards li { padding-top: 1.25rem; border-top: 3px solid var(--asphalt); }
+.cards p { color: var(--slate); }
 
 /* Inner pages */
 .page-head { padding-block: 3rem 3.5rem; }
@@ -183,5 +191,6 @@ ul.placeholder { padding-left: 2.5rem; }
 
 @media (max-width: 860px) {
   .boundaries { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cards { grid-template-columns: 1fr; }
   .page-head { padding-block: 1.5rem 2.5rem; }
 }
