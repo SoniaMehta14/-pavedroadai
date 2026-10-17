@@ -11,7 +11,8 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 *, *::before, *::after { box-sizing: inherit; }
-html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   background: var(--concrete);
@@ -22,7 +23,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: var(--sign); }
-a:focus-visible, .btn:focus-visible { outline: 3px solid var(--lane); outline-offset: 3px; }
+a:focus-visible, .btn:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--asphalt); outline-offset: 3px; }
 img, svg { max-width: 100%; }
 
 .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
@@ -155,7 +156,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: 
   .hero-photo .wrap { padding-block: 3.5rem 8rem; }
   .problem-grid, .services { grid-template-columns: 1fr; gap: 0; }
   .pipeline { min-width: 820px; }
-  #architecture .wrap { overflow-x: auto; }
+  .diagram-scroll { overflow-x: auto; }
   .problem-grid { gap: 1.5rem; }
   section { padding-block: 3.5rem; }
   .route li { padding-left: 6.5rem; }
