@@ -155,3 +155,33 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: 
 
 .skip { position: absolute; left: 1rem; top: -3rem; background: var(--asphalt); color: #fff; padding: .6rem 1rem; border-radius: 4px; z-index: 10; }
 .skip:focus { top: 1rem; }
+
+/* Site navigation */
+.top { flex-wrap: wrap; gap: 1rem 2rem; }
+.nav { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.4rem; }
+.nav a { display: inline-block; padding: .35rem 0 .2rem; color: var(--asphalt); text-decoration: none; font-weight: 500; border-bottom: 3px solid transparent; }
+.nav a:hover { border-bottom-color: var(--curb); }
+.nav a[aria-current="page"] { font-weight: 700; border-bottom-color: var(--lane); }
+
+/* Inner pages */
+.page-head { padding-block: 3rem 3.5rem; }
+.page-head h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); max-width: 20ch; }
+.intro { font-size: 1.25rem; color: var(--slate); max-width: 60ch; margin: 0; }
+.page-head + section { border-top: 1px solid var(--curb); }
+
+.boundaries { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 2.5rem; margin: 2.5rem 0 0; }
+.boundaries div { padding-top: 1.25rem; border-top: 3px solid var(--asphalt); }
+.boundaries dt { font-size: 1.25rem; font-weight: 700; margin-bottom: .5rem; }
+.boundaries dd { margin: 0; color: var(--slate); }
+
+.project .meta { color: var(--slate); font-size: 1rem; }
+.contact-list { list-style: none; margin: 0; padding: 0; }
+.contact-list li { padding: .6rem 0; border-bottom: 1px solid var(--curb); max-width: var(--measure); }
+
+.placeholder { background: #FFF4CC; border: 2px dashed var(--asphalt); padding: 1rem 1.25rem; max-width: var(--measure); }
+ul.placeholder { padding-left: 2.5rem; }
+
+@media (max-width: 860px) {
+  .boundaries { grid-template-columns: 1fr; gap: 1.5rem; }
+  .page-head { padding-block: 1.5rem 2.5rem; }
+}
