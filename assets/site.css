@@ -189,8 +189,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: 
 .contact-list { list-style: none; margin: 0; padding: 0; }
 .contact-list li { padding: .6rem 0; border-bottom: 1px solid var(--curb); max-width: var(--measure); }
 
-.placeholder { background: #FFF4CC; border: 2px dashed var(--asphalt); padding: 1rem 1.25rem; max-width: var(--measure); }
-ul.placeholder { padding-left: 2.5rem; }
 
 @media (max-width: 860px) {
   .boundaries { grid-template-columns: 1fr; gap: 1.5rem; }
