@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work | Paved Road AI</title>
+<meta name="description" content="Open source tools behind my approach: Paved Gate, an ingestion gate for AI agents, and the Paved Road playbook.">
+<link rel="canonical" href="https://pavedroadai.com/work/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Paved Road AI">
+<meta property="og:title" content="Work | Paved Road AI">
+<meta property="og:description" content="Open source tools behind my approach: Paved Gate, an ingestion gate for AI agents, and the Paved Road playbook.">
+<meta property="og:url" content="https://pavedroadai.com/work/">
+<meta property="og:image" content="https://pavedroadai.com/assets/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paved Road AI. AI Centers of Excellence for regulated industries.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Work | Paved Road AI">
+<meta name="twitter:description" content="Open source tools behind my approach: Paved Gate, an ingestion gate for AI agents, and the Paved Road playbook.">
+<meta name="twitter:image" content="https://pavedroadai.com/assets/share.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap top">
+  <a class="mark" href="/">
+    <img src="/assets/favicon.svg" alt="" width="28" height="28">
+    Paved Road AI
+  </a>
+  <nav aria-label="Primary">
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/approach/">Approach</a></li>
+      <li><a href="/offer/">Offer</a></li>
+      <li><a href="/work/" aria-current="page">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+<div class="wrap page-head">
+    <h1>Open source work.</h1>
+    <p class="intro">I publish the tools behind my approach so you can read the code before you trust it.</p>
+  </div>
+
+  <section id="paved-gate">
+    <div class="wrap project">
+      <h2>Paved Gate</h2>
+      <p class="meta">Apache 2.0 license. Alpha.</p>
+      <p>A fast ingestion gate that sits in front of AI agents. For each request it asks three questions in one parallel round trip, about intent, risk, and whether sensitive data is present. Then it does one of three things: blocks the request with a policy error, answers it with a deterministic handler without calling a model, or passes it to a frontier agent.</p>
+      <p>Every decision, allowed or blocked, writes an audit record with the raw scores and a hash of the policy that produced it. Enforcement and the audit trail come from the same code path.</p>
+      <p><a href="https://github.com/SoniaMehta14/paved-gate">Paved Gate on GitHub</a></p>
+    </div>
+  </section>
+
+  <section id="playbook">
+    <div class="wrap project">
+      <h2>Paved Road playbook</h2>
+      <p class="meta">MIT license.</p>
+      <p>An operating playbook for a 90 day AI engagement, with a reference implementation that shows the architecture working. The playbook sets a measured baseline by day 30, one production workflow with a named internal owner by day 60, and a return on investment attribution with a stated method by day 90. It also includes an AI diligence scorecard.</p>
+      <p>The reference implementation runs against deliberately messy data from a fictional company and reports its accuracy honestly, including the unflattering numbers.</p>
+      <p><a href="https://github.com/SoniaMehta14/pavedroad-playbook">The playbook on GitHub</a></p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Start with a conversation.</h2>
+      <p>Tell me where AI stands in your organization today. I will tell you honestly what I would do first.</p>
+      <div class="actions">
+        <a class="btn" href="https://calendly.com/mehta-sonia">Book an intro call</a>
+        <a href="mailto:sonia.mehta@pavedroadai.com">sonia.mehta@pavedroadai.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Paved Road AI, San Francisco Bay Area</span>
+    <nav class="foot-links" aria-label="Elsewhere">
+      <a href="https://pavedroadai.substack.com">Newsletter</a>
+      <a href="https://www.linkedin.com/in/sonia-mehta/">LinkedIn</a>
+      <a href="mailto:sonia.mehta@pavedroadai.com">Email</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

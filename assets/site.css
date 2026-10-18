@@ -1,0 +1,199 @@
+:root {
+  --asphalt: #1C2127;
+  --concrete: #F3F4F1;
+  --curb: #D9DCD6;
+  --lane: #E8B321;
+  --slate: #56616B;
+  --sign: #1F5A45;
+  --measure: 68ch;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  margin: 0;
+  background: var(--concrete);
+  color: var(--asphalt);
+  font-family: "Overpass", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--sign); }
+a:focus-visible, .btn:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--asphalt); outline-offset: 3px; }
+img, svg { max-width: 100%; }
+
+.wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; padding-block: 1.5rem; }
+.mark { display: flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--asphalt); letter-spacing: -.01em; }
+.mark img { width: 28px; height: 28px; display: block; }
+
+.btn {
+  display: inline-block;
+  background: var(--asphalt);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: .85rem 1.4rem .75rem;
+  border-radius: 4px;
+  transition: background .15s ease;
+}
+.btn:hover { background: var(--sign); }
+.btn-lane { background: var(--lane); color: var(--asphalt); }
+.btn-lane:hover { background: #fff; }
+
+h1 {
+  font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+  font-weight: 800;
+  margin: 0 0 1.5rem;
+}
+
+/* Hero: the photo at /images/hero.jpg sits under a dark overlay. Until it exists,
+   the asphalt color and a winding road along the bottom show instead. The overlay
+   lightens in the bottom band, below the text, so that road stays visible. */
+.hero-photo {
+  color: #fff;
+  background:
+    linear-gradient(to top, rgba(28, 33, 39, .25) 0, rgba(28, 33, 39, .85) 7rem, rgba(28, 33, 39, .65) 100%),
+    url("/images/hero.jpg") center / cover no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110'%3E%3Cpath d='M0 75C200 75 250 30 450 30S750 85 900 85S1100 75 1200 75' fill='none' stroke='%232E363F' stroke-width='40'/%3E%3Cpath d='M0 75C200 75 250 30 450 30S750 85 900 85S1100 75 1200 75' fill='none' stroke='%23E8B321' stroke-width='4' stroke-linecap='round' stroke-dasharray='26 22'/%3E%3C/svg%3E") left bottom / auto 110px repeat-x,
+    var(--asphalt);
+}
+.hero-photo .wrap { padding-block: 6rem 9rem; }
+.hero-photo h1 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
+.lede { font-size: 1.3rem; color: #E1E4E7; max-width: 44ch; margin: 0 0 2rem; }
+.hero-photo .actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+.hero-link { color: #fff; font-weight: 700; }
+.hero-photo a:focus-visible { outline-color: #fff; }
+
+/* Headings: each sentence of a multi sentence heading starts its own line. */
+.line { display: block; }
+
+/* Sections */
+section { padding-block: 5rem; }
+section + section { border-top: 1px solid var(--curb); }
+h2 { font-size: clamp(1.8rem, 3.2vw, 2.5rem); line-height: 1.1; letter-spacing: -.02em; font-weight: 800; margin: 0 0 1.25rem; }
+h3 { font-size: 1.25rem; line-height: 1.25; margin: 0 0 .5rem; font-weight: 700; }
+p { margin: 0 0 1rem; max-width: var(--measure); }
+
+.problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 2.5rem; }
+.problem-grid p { color: var(--slate); }
+
+/* The route: a real sequence, so it is numbered */
+.route { list-style: none; margin: 3rem 0 0; padding: 0; position: relative; }
+.route::before {
+  content: "";
+  position: absolute; left: 22px; top: 8px; bottom: 8px; width: 44px;
+  background: var(--asphalt);
+  border-radius: 2px;
+}
+.route::after {
+  content: "";
+  position: absolute; left: 43px; top: 20px; bottom: 20px; width: 3px;
+  background: repeating-linear-gradient(to bottom, var(--lane) 0 14px, transparent 14px 26px);
+}
+.route li { position: relative; padding: 0 0 3rem 7rem; }
+.route li:last-child { padding-bottom: 0; }
+.route .stop {
+  position: absolute; left: 0; top: -.2rem;
+  width: 88px; height: 44px;
+  display: grid; place-items: center;
+  background: var(--lane); color: var(--asphalt);
+  font-weight: 800; font-size: 1rem; border-radius: 3px;
+  z-index: 1;
+}
+.route .days { color: var(--slate); font-weight: 500; font-size: 1rem; margin-bottom: .35rem; }
+
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; margin-top: 2.5rem; }
+.services div { padding: 1.75rem 0; border-top: 3px solid var(--asphalt); }
+.services p { color: var(--slate); }
+
+.pipeline { width: 100%; height: auto; margin-top: 2.5rem; }
+.road-bed2 { fill: none; stroke: var(--asphalt); stroke-width: 26; stroke-linecap: round; }
+.road-line2 { fill: none; stroke: var(--lane); stroke-width: 3; stroke-dasharray: 14 12; }
+.signs .post { stroke: var(--slate); stroke-width: 3; }
+.signs rect { fill: #fff; stroke: var(--asphalt); stroke-width: 2.5; }
+.signs text { font-family: "Overpass", sans-serif; font-weight: 700; font-size: 18px; fill: var(--asphalt); text-anchor: middle; }
+.signs text.sub { font-weight: 500; font-size: 14px; fill: var(--slate); }
+.sign-final rect { fill: var(--lane); }
+.checkpoints circle { fill: var(--lane); stroke: var(--asphalt); stroke-width: 2; }
+.checkpoints path { fill: none; stroke: var(--asphalt); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.legend circle { fill: var(--lane); stroke: var(--asphalt); stroke-width: 2; }
+.legend path { fill: none; stroke: var(--asphalt); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.legend text { font-family: "Overpass", sans-serif; font-size: 14px; fill: var(--slate); dominant-baseline: middle; }
+
+.assurance { background: var(--asphalt); color: #fff; border-top: none !important; }
+.assurance h2 { color: #fff; }
+.assurance p { color: #C9CED3; }
+.assurance .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.assurance ul { margin: 0; padding: 0; list-style: none; }
+.assurance li { padding: 1rem 0 1rem 1.5rem; border-bottom: 1px solid #36404A; position: relative; }
+.assurance li::before { content: ""; position: absolute; left: 0; top: 1.45rem; width: 10px; height: 3px; background: var(--lane); }
+.assurance + section { border-top: none; }
+
+.about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; }
+.about .kicker { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin: 0; }
+
+.closing { text-align: left; }
+.closing .actions { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; margin-top: 2rem; }
+
+.news-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.newsletter iframe { width: 100%; height: 320px; border: 1px solid var(--curb); border-radius: 4px; background: #fff; }
+.foot-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+footer { padding-block: 2.5rem; border-top: 1px solid var(--curb); color: var(--slate); font-size: .95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+
+@media (max-width: 860px) {
+  .assurance .cols, .about, .news-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-photo .wrap { padding-block: 3.5rem 8rem; }
+  .problem-grid, .services { grid-template-columns: 1fr; gap: 0; }
+  .pipeline { min-width: 820px; }
+  .diagram-scroll { overflow-x: auto; }
+  .problem-grid { gap: 1.5rem; }
+  section { padding-block: 3.5rem; }
+  .route li { padding-left: 6.5rem; }
+}
+
+.skip { position: absolute; left: 1rem; top: -3rem; background: var(--asphalt); color: #fff; padding: .6rem 1rem; border-radius: 4px; z-index: 10; }
+.skip:focus { top: 1rem; }
+
+/* Site navigation */
+.top { flex-wrap: wrap; gap: 1rem 2rem; }
+.nav { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.4rem; }
+.nav a { display: inline-block; padding: .35rem 0 .2rem; color: var(--asphalt); text-decoration: none; font-weight: 500; border-bottom: 3px solid transparent; }
+.nav a:hover { border-bottom-color: var(--curb); }
+.nav a[aria-current="page"] { font-weight: 700; border-bottom-color: var(--lane); }
+
+.cards { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 2.5rem; }
+.cards li { padding-top: 1.25rem; border-top: 3px solid var(--asphalt); }
+.cards p { color: var(--slate); }
+
+/* Inner pages */
+.page-head { padding-block: 3rem 3.5rem; }
+.page-head h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+.intro { font-size: 1.25rem; color: var(--slate); max-width: 60ch; margin: 0; }
+.page-head + section { border-top: 1px solid var(--curb); }
+
+.boundaries { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 2.5rem; margin: 2.5rem 0 0; }
+.boundaries div { padding-top: 1.25rem; border-top: 3px solid var(--asphalt); }
+.boundaries dt { font-size: 1.25rem; font-weight: 700; margin-bottom: .5rem; }
+.boundaries dd { margin: 0; color: var(--slate); }
+
+.project .meta { color: var(--slate); font-size: 1rem; }
+.contact-list { list-style: none; margin: 0; padding: 0; }
+.contact-list li { padding: .6rem 0; border-bottom: 1px solid var(--curb); max-width: var(--measure); }
+
+
+@media (max-width: 860px) {
+  .boundaries { grid-template-columns: 1fr; gap: 1.5rem; }
+  .cards { grid-template-columns: 1fr; }
+  .page-head { padding-block: 1.5rem 2.5rem; }
+}

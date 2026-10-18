@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Approach | Paved Road AI</title>
+<meta name="description" content="The operating model I use to stand up AI in regulated organizations, and the three boundaries for every agent: what it may see, do, and ship.">
+<link rel="canonical" href="https://pavedroadai.com/approach/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Paved Road AI">
+<meta property="og:title" content="Approach | Paved Road AI">
+<meta property="og:description" content="The operating model I use to stand up AI in regulated organizations, and the three boundaries for every agent: what it may see, do, and ship.">
+<meta property="og:url" content="https://pavedroadai.com/approach/">
+<meta property="og:image" content="https://pavedroadai.com/assets/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paved Road AI. AI Centers of Excellence for regulated industries.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Approach | Paved Road AI">
+<meta name="twitter:description" content="The operating model I use to stand up AI in regulated organizations, and the three boundaries for every agent: what it may see, do, and ship.">
+<meta name="twitter:image" content="https://pavedroadai.com/assets/share.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap top">
+  <a class="mark" href="/">
+    <img src="/assets/favicon.svg" alt="" width="28" height="28">
+    Paved Road AI
+  </a>
+  <nav aria-label="Primary">
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/approach/" aria-current="page">Approach</a></li>
+      <li><a href="/offer/">Offer</a></li>
+      <li><a href="/work/">Work</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+<div class="wrap page-head">
+    <h1>A paved road for AI in regulated organizations.</h1>
+    <p class="intro">A paved road is the supported route most teams take by default because it is the easiest one. I build that route for AI: an operating model that covers people, process, and technology, and three boundaries that govern every agent.</p>
+  </div>
+
+  <section id="operating-model">
+    <div class="wrap">
+      <h2>The operating model</h2>
+      <div class="problem-grid">
+        <div>
+          <h3>People</h3>
+          <p>A small central team owns the platform, the standards, and the intake of new use cases. Each business function names an owner for its AI work. Developers, architects, and leaders get training matched to their role.</p>
+        </div>
+        <div>
+          <h3>Process</h3>
+          <p>One intake path for new use cases, ranked by value and risk. Clear review steps before anything reaches users. A regular cadence for continuing, fixing, or stopping each pilot.</p>
+        </div>
+        <div>
+          <h3>Technology</h3>
+          <p>A shared platform every team builds on: approved models, a gateway in front of them, evaluation harnesses, and audit logs. Teams reuse it instead of rebuilding it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="boundaries">
+    <div class="wrap">
+      <h2>Three boundaries for every agent</h2>
+      <p>Before an agent goes near production, I want three answers written down and enforced in code, not only in a policy document.</p>
+      <dl class="boundaries">
+        <div>
+          <dt>What it may see</dt>
+          <dd>The data, systems, and documents the agent can read. Sensitive data is masked or kept out unless there is a stated reason and an approval.</dd>
+        </div>
+        <div>
+          <dt>What it may do</dt>
+          <dd>The tools and actions it can take, and which of them need a person to confirm first. Anything outside the list is refused.</dd>
+        </div>
+        <div>
+          <dt>What it may ship</dt>
+          <dd>The output that can reach a customer, a record, or a production system, and the evaluation checks it has to pass before it does.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="wrap">
+      <h2>What the platform looks like.</h2>
+      <p>Every AI system I build routes through the same five stages, so nothing reaches a user without being checked, and nothing has to be rebuilt by the next team that needs it.</p>
+      <div class="diagram-scroll" tabindex="0" role="region" aria-label="Platform diagram">
+      <svg class="pipeline" viewBox="0 0 1080 280" role="img" aria-label="A road with five stops: Ingestion Gateway, Context Protocol, Policy Layer, Eval Harness, and Production Runtime, with evaluation checkpoints running along the road between each stop.">
+        <path class="road-bed2" d="M40 200 H1040"/>
+        <path class="road-line2" d="M40 200 H1040"/>
+        <g class="checkpoints">
+          <g transform="translate(195,200)"><circle r="12"/><path d="M-5 0 L-1 5 L6 -6" /></g>
+          <g transform="translate(425,200)"><circle r="12"/><path d="M-5 0 L-1 5 L6 -6" /></g>
+          <g transform="translate(655,200)"><circle r="12"/><path d="M-5 0 L-1 5 L6 -6" /></g>
+          <g transform="translate(885,200)"><circle r="12"/><path d="M-5 0 L-1 5 L6 -6" /></g>
+        </g>
+        <g class="signs">
+          <g transform="translate(80,0)">
+            <line class="post" x1="0" y1="90" x2="0" y2="200"/>
+            <rect x="-68" y="20" width="136" height="72" rx="6"/>
+            <text y="54">Ingestion</text>
+            <text y="74" class="sub">Gateway</text>
+          </g>
+          <g transform="translate(310,0)">
+            <line class="post" x1="0" y1="90" x2="0" y2="200"/>
+            <rect x="-68" y="20" width="136" height="72" rx="6"/>
+            <text y="54">Context</text>
+            <text y="74" class="sub">Protocol</text>
+          </g>
+          <g transform="translate(540,0)">
+            <line class="post" x1="0" y1="90" x2="0" y2="200"/>
+            <rect x="-68" y="20" width="136" height="72" rx="6"/>
+            <text y="54">Policy</text>
+            <text y="74" class="sub">Layer</text>
+          </g>
+          <g transform="translate(770,0)">
+            <line class="post" x1="0" y1="90" x2="0" y2="200"/>
+            <rect x="-68" y="20" width="136" height="72" rx="6"/>
+            <text y="54">Eval</text>
+            <text y="74" class="sub">Harness</text>
+          </g>
+          <g transform="translate(1000,0)" class="sign-final">
+            <line class="post" x1="0" y1="90" x2="0" y2="200"/>
+            <rect x="-68" y="20" width="136" height="72" rx="6"/>
+            <text y="54">Production</text>
+            <text y="74" class="sub">Runtime</text>
+          </g>
+        </g>
+        <g class="legend" transform="translate(40,250)">
+          <circle r="9" cy="-4"/>
+          <path d="M-4 -4 L0 0 L5 -9" transform="translate(0,0)"/>
+          <text x="20" y="0">Evaluation checkpoint, every stage is checked before the next one runs</text>
+        </g>
+      </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="assurance">
+    <div class="wrap cols">
+      <div>
+        <h2><span class="line">Regulated first.</span> <span class="line">Vendor neutral.</span></h2>
+        <p>I work with organizations that answer to regulators, such as financial services, insurance, healthcare and life sciences, energy and utilities, and the public sector. I work with organizations of any size, from growing firms to large enterprises. Governance is part of the road, not a gate at the end of it.</p>
+        <p>I recommend the models and platforms that fit your controls and your existing stack, whichever vendor provides them.</p>
+      </div>
+      <ul>
+        <li>Policy as code and evaluation harnesses built into your CI/CD pipeline</li>
+        <li>Provenance and telemetry for every model driven decision</li>
+        <li>Verification gates in your release pipeline before anything reaches users</li>
+        <li>An open maturity model so you can measure progress over time</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="wrap">
+      <h2>Start with a conversation.</h2>
+      <p>Tell me where AI stands in your organization today. I will tell you honestly what I would do first.</p>
+      <div class="actions">
+        <a class="btn" href="https://calendly.com/mehta-sonia">Book an intro call</a>
+        <a href="mailto:sonia.mehta@pavedroadai.com">sonia.mehta@pavedroadai.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Paved Road AI, San Francisco Bay Area</span>
+    <nav class="foot-links" aria-label="Elsewhere">
+      <a href="https://pavedroadai.substack.com">Newsletter</a>
+      <a href="https://www.linkedin.com/in/sonia-mehta/">LinkedIn</a>
+      <a href="mailto:sonia.mehta@pavedroadai.com">Email</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
